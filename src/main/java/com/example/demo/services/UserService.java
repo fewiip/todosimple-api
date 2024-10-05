@@ -52,7 +52,6 @@ public class UserService {
             this.userRepository.deleteById(id);
         } catch(Exception e) {
             throw new RuntimeException("Nao eh possivel excluir pois ha entitades relacionadas");
-
         }
     }
 }
