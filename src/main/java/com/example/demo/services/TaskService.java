@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -17,6 +18,7 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
+    @Autowired
     private UserService userService;
 
     public Task findById(Long id) {
@@ -24,6 +26,11 @@ public class TaskService {
         return task.orElseThrow(() -> new RuntimeException(
             "Tarefa nao encontrada"
         ));
+    }
+
+    public List<Task> findAllByUserId(Long userId) {
+        List<Task> tasks = this.taskRepository.findByUser_Id(userId);
+        return tasks;
     }
 
     @Transactional
